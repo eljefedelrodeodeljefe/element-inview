@@ -1,0 +1,51 @@
+{
+  "name": "element-inview",
+  "version": "0.1.0",
+  "description": "Get notified when a DOM element enters or exits the viewport.",
+  "repository": "https://github.com/camwiegert/in-view",
+  "main": "./index.js",
+  "scripts": {
+    "start": "NODE_ENV=production webpack -wp",
+    "build": "NODE_ENV=production webpack -p",
+    "prepublish": "npm run -s test",
+    "lint": "eslint index.js",
+    "pretest": "npm run -s lint",
+    "test": "ava -v",
+    "docs": "npm run -s docs-server & npm run -s docs-js & npm run -s docs-css",
+    "docs-server": "http-server ./docs -o",
+    "docs-js": "NODE_ENV=production webpack -wp --config ./docs/docs.webpack.config.js",
+    "docs-css": "node-sass -w --output-style=compressed ./docs/lib/css/main.scss ./docs/lib/css/main.min.css"
+  },
+  "ava": {
+    "files": [
+      "test/*js"
+    ],
+    "require": [
+      "babel-register",
+      "./test/helpers/setup-browser-env.js"
+    ],
+    "babel": "inherit"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "author": "Robert Jefe Lindstaedt <robert.lindstaedt@gmail.com",
+  "homepage": "https://eljefedelrodeodeljefe.github.io/element-inview",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.11.6",
+    "eslint": "^3.3.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "http-server": "^0.9.0",
+    "jsdom": "^9.4.2",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {}
+}
